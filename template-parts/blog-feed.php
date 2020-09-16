@@ -17,36 +17,28 @@
 
 
         <div class="row">
+
+            <?php 
+                        query_posts(array( 
+                            'post_type' => 'historie',
+                        ) );  
+                        ?>
+            <?php while (have_posts()) : the_post(); ?>
+
+
             <div class="col-md-4">
                 <div class="blogfeed__post">
-                    <a href="#">
+                    <a href="<?php the_permalink() ;?>">
                         <div class="blogfeed__post--content">
-                            <h3>Mroźny poranek</h3>
+                            <h3><?php the_title() ?></h3>
                         </div>
-                        <img src="/wp-content/uploads/2020/03/square.jpg" alt="">
+                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php the_title() ?>">
                     </a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="blogfeed__post">
-                    <a href="#">
-                        <div class="blogfeed__post--content">
-                            <h3>Mroźny poranek</h3>
-                        </div>
-                        <img src="/wp-content/uploads/2020/03/square.jpg" alt="">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="blogfeed__post">
-                    <a href="#">
-                        <div class="blogfeed__post--content">
-                            <h3>Mroźny poranek</h3>
-                        </div>
-                        <img src="/wp-content/uploads/2020/03/square.jpg" alt="">
-                    </a>
-                </div>
-            </div>
+            <?php endwhile;
+                    wp_reset_query(); 
+                    ?>
         </div>
     </div>
 </section>
